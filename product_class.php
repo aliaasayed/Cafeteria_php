@@ -30,7 +30,6 @@ class Product {
      $stmt->execute();
      $data = $stmt->fetch(PDO::FETCH_ASSOC);
      return $data;
-     echo $product_ID;
      }
 
 
