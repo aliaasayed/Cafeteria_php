@@ -55,7 +55,7 @@ class Product {
         //delete some product of table product by product id
         public function deleteData($product_ID){
         $query="DELETE FROM product WHERE product_ID='$product_ID' ";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $conn->prepare($query);
         $stmt->execute();
         return true;
         }
