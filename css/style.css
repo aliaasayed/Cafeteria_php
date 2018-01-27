@@ -1,0 +1,50 @@
+body
+{
+  font-family:Sofia;
+  font-size: 20px
+
+
+}
+#user_name{
+	float: right;
+    
+	
+}
+#user_photo{
+
+
+	border-radius: 50%;
+	height: 100px;
+	width:100px;
+	float: right;
+}
+.product_list_element
+{
+
+	display: inline;
+}
+
+.product_photo
+{
+	height: 120px;
+	width:140px;
+}
+
+.element_order
+{
+
+	display: inline;
+}
+
+.glyphicon-remove-circle
+{
+	color: red;
+	float: right;
+	font-size:30px;
+}
+
+.btn-success
+{
+	font-size: 20px;
+	float: right;
+}
