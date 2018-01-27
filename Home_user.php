@@ -12,10 +12,11 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
  
 </head>
-<header>
-	
-</header>
+
 <body>
+<header>
+<?php include('navbar_user.php');?>
+</header>
 <div class="container">
 	<div class="row">
 		<label class="text-primary" id="user_name"> User Name</label>
@@ -25,11 +26,11 @@
 		<form method="POST" >
 		<div class="col-sm-4 well" id="reciept">
 
-        <p id="label_notes">Notes</p> <textarea rows="5" name="Notes"></textarea>
+        <p id="label_notes">Notes</p> <textarea rows="4" cols="13" name="Notes"></textarea>
         <br>
         <br>
          Room
-        <select class="selectpicker" title="Choose your location" data-width=fit>
+        <select name="Room" class="selectpicker" title="Choose your location" data-width=fit>
 		  <option>2023</option>
 		  <option>2012</option>
 		  <option>1012</option>
@@ -37,7 +38,7 @@
         <hr>
 
         <label name="Total" style="display: block;">Total</label>
-	    <button type="submit" name="submit"  class="btn btn-outline-success">Confirm </button>	
+	    <button type="submit" name="submit"  class="btn btn-success">Confirm </button>	
 	    </form>
 
 
@@ -48,7 +49,27 @@
         <div class="panel panel-default" >   
 	    <div class="panel-heading">Products </div>
         <div class="panel-body" id="product_list">   
-	    <script type="text/javascript" src="js/Home.js"></script>
+	   
+	    <script type="text/javascript">
+        <?php 
+        
+        include('product_class.php');
+        $p = new product(); 
+		?>
+		
+		 DATA="<?php foreach($p->showData() as $value){
+		 extract($value);
+
+         echo $product_ID.",";
+		 echo $product_name.",";
+		 echo  $price.",";
+		 echo  $image;
+         echo '\n';
+        }
+        ?>"
+        
+        </script>
+	     <script type="text/javascript" src="js/Home.js"></script>
         </div>
 		</div>
 		</div>
