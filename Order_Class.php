@@ -34,7 +34,7 @@ class Order{
   {
     global $conn;
     $date=date("Y-m-d");
-    $time=date("h:ia");
+    $time=date("h:i:s");
     echo $time;
     echo $date;
     $query="INSERT INTO orders(user_id,date,time,amount,order_room) values ('$user_id','$date','$time','$amount','$order_room') ";
