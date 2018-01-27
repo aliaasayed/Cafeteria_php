@@ -13,7 +13,7 @@
  
 </head>
 <header>
-	
+<?php include('navbar_admin.php');?>
 </header>
 <body>
 <div class="container">
@@ -25,7 +25,7 @@
 		<form method="POST" >
 		<div class="col-sm-4 well" id="reciept">
 
-        <p id="label_notes">Notes</p> <textarea rows="5" name="Notes"></textarea>
+        <p id="label_notes">Notes</p> <textarea rows="5" cols="13" name="Notes"></textarea>
         <br>
         <br>
          Room
@@ -37,7 +37,7 @@
         <hr>
 
         <label name="Total" style="display: block;">Total</label>
-	    <button type="submit" name="submit"  class="btn btn-outline-success">Confirm </button>	
+	    <button type="submit" name="submit"  class="btn btn-success">Confirm </button>	
 	    </form>
 
 
@@ -57,7 +57,26 @@
         <div class="panel panel-default" >   
 	    <div class="panel-heading">Products </div>
         <div class="panel-body" id="product_list">   
-	    <script type="text/javascript" src="js/Home.js"></script>
+	    <script type="text/javascript">
+        <?php 
+        
+        include('product_class.php');
+        $p = new product(); 
+		?>
+		
+		 DATA="<?php foreach($p->showData() as $value){
+		 extract($value);
+
+         echo $product_ID.",";
+		 echo $product_name.",";
+		 echo  $price.",";
+		 echo  $image;
+         echo '\n';
+        }
+        ?>"
+        
+        </script>
+	     <script type="text/javascript" src="js/Home.js"></script>
         </div>
 		</div>
 		</div>
