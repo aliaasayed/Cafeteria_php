@@ -30,14 +30,13 @@ class Order{
   }
   
 
-  public function insert_order($user_id,$amount,$order_room)
+  public function insert_order($user_id,$amount,$order_room,$notes)
   {
     global $conn;
     $date=date("Y-m-d");
     $time=date("h:i:s");
-    echo $time;
-    echo $date;
-    $query="INSERT INTO orders(user_id,date,time,amount,order_room) values ('$user_id','$date','$time','$amount','$order_room') ";
+
+    $query="INSERT INTO orders(user_id,date,time,amount,notes,order_room) values ('$user_id','$date','$time','$amount','$notes','$order_room') ";
 
     $result=$conn->prepare($query);
     $result->execute();
@@ -72,21 +71,5 @@ class Order{
   }
 }  
 
-$order_1=new Order();
-//$result=$order_1->insert_order(1,500,2013);
-$result=$order_1->get_latest_order_id(1);
-echo $result;
-
-/*foreach($p->showData() as $value){
- extract($value);
-
-
-echo "<br> no:".$product_ID;
-echo "<br> name:".$product_name;
-echo "<br> price:".$price;
-echo "<br> category:".$category;
-
-}
-*/
 
 ?>
