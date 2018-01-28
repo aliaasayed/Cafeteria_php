@@ -13,7 +13,7 @@
 <body>
 	<div class="container">
  	 <div class="row">
-	<form action="updateproductback.php?productid=<?php echo($_GET["productid"])?>" method="POST">
+	<form action="updateproductback.php?productid=<?php echo($_GET["productid"])?>" method="POST" enctype="multipart/form-data">
 		<div>
 			<header>
 				<h1>
@@ -23,7 +23,7 @@
 
 			<div>
 				<label class="col-sm-1 control-label ">Product</label>
-				<input type="text" name="ProductName" placeholder="ProductName" 
+				<input type="text" name="ProductName" placeholder="ProductName"
 				class="col-sm-4 control-label offset-sm-2" required>
 			</div>
 
@@ -42,17 +42,17 @@
 			</div>
 			<div>
 				<label class="col-sm-1 control-label ">Product Picture</label>
-				<input type="file" name="ProductPicture" class="col-sm-3 control-label offset-sm-1" name="Image" >
+				<input type="file" name="fileToUpload" id="fileToUpload" class="col-sm-3 control-label offset-sm-1">
 				<br>
 				<br>
 			</div>
 			<div>
 				 <button  type="reset" class="btn btn-primary col-sm-2 offset-sm-0">reset</button>
-      			 <button type="submit" class="btn btn-primary col-sm-2 offset-sm-2">Save</button>
-  				 
+      			 <button type="submit" name="submit" class="btn btn-primary col-sm-2 offset-sm-2">Save</button>
+
 			</div>
 			<div>
-		
+
 			 </div>
 		</div>
 		</form>
