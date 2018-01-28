@@ -9,14 +9,14 @@
 <nav class="navbar navbar-inverse ">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="orders_admin.php">WebSiteName</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="Home_admin.php">Home</a></li>
-      <li><a href="#">Products</a></li>
-      <li><a href="#">Users</a></li>
-      <li><a href="#">Manual Order</a></li>
-      <li><a href="#">Checks</a></li>
+      <li><a href="orders_admin.php">Home</a></li>
+      <li><a href="allproducts.php">Products</a></li>
+      <li><a href="allusres.php">Users</a></li>
+      <li><a href="Home_admin.php">Manual Order</a></li>
+      <li><a href="checks.php">Checks</a></li>
     </ul>
   </div>
 </nav>

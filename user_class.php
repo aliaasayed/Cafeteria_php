@@ -51,7 +51,7 @@ class user
 
       public function update($user_ID,$user_name,$email,$password,$Room_no,$Ext,$Picture){
          global  $conn;
-          $query = "UPDATE product
+          $query = "UPDATE user
            SET user_name ='$user_name' ,email ='$email',password='$password',Room_no='$Room_no' , Ext='$Ext', Picture='$Picture'
            WHERE user_ID ='$user_ID' ";
            $stmt = $conn->prepare($query);
