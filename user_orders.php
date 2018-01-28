@@ -1,4 +1,11 @@
-<?php include('connection.php');
+<?php
+
+session_start();
+$email =$_SESSION['email'];
+echo $email;
+$user_ID = $_SESSION['user_ID'];
+echo $user_ID;
+ include('connection.php');
 include('navbar_user.php');?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +18,7 @@ include('navbar_user.php');?>
         margin-left: 20px;
       }
       table,th,td{
-        border: black solid 5px;
+        border: black solid 0px;
         padding: 10px;
         width: 100%;
       }
@@ -29,7 +36,7 @@ include('navbar_user.php');?>
       <i class="fa fa-calendar" aria-hidden="true"></i>
       <input type="button" id='confirm' name="button" value="confirm">
     </div>
-    <table>
+    <table class="table table-striped table-inverse" >
       <tr>
         <th>Order Date</th>
         <th>Amount</th>
@@ -38,7 +45,8 @@ include('navbar_user.php');?>
       </tr>
 
     <?php
-    @$query = "SELECT order_id,date,time,amount,status FROM orders where user_id='2' and date between '".$_GET['date_from']."' and '".$_GET['date_to']."'";
+    @$query = "SELECT order_id,date,time,amount,status FROM orders where user_id='$user_ID'
+    and date between '".$_GET['date_from']."' and '".$_GET['date_to']."'";
     $statement = $conn->prepare($query);
     $statement->execute();
     while ($row_order = $statement->fetch(PDO::FETCH_ASSOC)) {
@@ -68,22 +76,31 @@ include('navbar_user.php');?>
     ?>
 
   </table>
-  <table id="table2" style="display:<?php if(@$_GET['table2']=='block'){echo 'block';}else{echo 'none';} ?>">
+  <table id="table2" class="table table-striped table-inverse" style="display:<?php if(@$_GET['table2']=='block'){echo 'block';}else{echo 'none';} ?>">
     <?php
     //echo $id_value[0];
     if(@$_GET['date_from']!="" && $_GET['date_to']!="")
     {
     //  echo $id_value;
-    @$query = "SELECT order_id,date,time,amount FROM orders where order_id='".$_GET['order_id']."'";
+    @$query = "SELECT product.image,product.product_name
+    ,order_product.Quantity,
+    product.price,orders.amount FROM product , order_product ,orders WHERE
+     order_product.product_id=product.product_ID and order_product.order_id=orders.order_id
+      AND   user_id='$user_ID' AND order_product.order_id='".$_GET['order_id']."' ";
     $statement = $conn->prepare($query);
     $statement->execute();
+    echo "<tr>";
+$total_amount='';
     while ($row_order = $statement->fetch(PDO::FETCH_ASSOC)) {
-      echo "<tr>";
-      echo "<td>";
-      echo $row_order['order_id'];
-      echo "</d>";
-      echo "</tr>";
+
+      echo "<td><figure id='img-admin'>";
+      echo "<img src='".$row_order['image']."' width='80' height='80' />";
+      echo "<figcaption>".$row_order['product_name']." ".$row_order['price']."LE </figcaption><firgcapyion>Quantity ".$row_order['Quantity']."</figcaption></figure></td>";
+      $total_amount = $row_order['amount'];
+
     }
+  echo "<td style='padding-top:100px;text-align:center;'> total ".$total_amount."</td>";
+    echo "</tr>";
   }
     ?>
 
