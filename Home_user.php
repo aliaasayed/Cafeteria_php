@@ -12,33 +12,58 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
  
 </head>
-
 <body>
 <header>
-<?php include('navbar_user.php');?>
+<?php 
+
+session_start();
+$email=$_SESSION['email'];
+$password=$_SESSION['password'];
+
+include('navbar_user.php');?>
 </header>
 <div class="container">
 	<div class="row">
-		<label class="text-primary" id="user_name"> User Name</label>
-		<img id ="user_photo" src="img/cola_2.png" class="img-rounded">
+		<label class="text-primary" id="user_name"> <?php 
+        include('user_class.php');
+        $user=new user();
+        $username=$user->getUsername($email);
+        echo $username;
+		?></label>
+		<img id ="user_photo" src="<?php $src=$user->get_Userimage($email); 
+    echo $src;
+    ?>" class="img-rounded" >
 	</div>
-	<div class="row"  >
-		<form method="POST" >
-		<div class="col-sm-4 well" id="reciept">
 
-        <p id="label_notes">Notes</p> <textarea rows="4" cols="13" name="Notes"></textarea>
+	<div class="row">
+		<form method="POST" action="insert_order.php" >
+		<div class="col-sm-4 well" id="reciept">
+        <input type="hidden" name="user_id" value="<?php
+           $id=$user->getUser_id($username);
+           echo $id;
+          ?>" >
+        <input id="products_num" type="hidden" name="products_num">    
+        <input id="order_amount" type="hidden" name="amount">  
+        <p id="label_notes">Notes</p> <textarea rows="4" cols="13" name="Notes" ></textarea>
         <br>
         <br>
          Room
-        <select name="Room" class="selectpicker" title="Choose your location" data-width=fit>
-		  <option>2023</option>
-		  <option>2012</option>
-		  <option>1012</option>
+        <select id="select_Room" name="Room" class="selectpicker" title="Choose your location" data-width=fit required="" >
+        <script type="text/javascript">
+	        Options="<?php foreach($user->getAll_rooms() as $value){
+			 extract($value);
+	         echo $Room_no;
+	         echo '\n';
+	        }
+        ?>"    	
+        </script>
 		</select>
         <hr>
 
-        <label name="Total" style="display: block;">Total</label>
+        <label id="Total" name="Total"></label>
+        <label > EGP</label>
 	    <button type="submit" name="submit"  class="btn btn-success">Confirm </button>	
+	     <input type="hidden" name="admin" value="0" id=admin>
 	    </form>
 
 
