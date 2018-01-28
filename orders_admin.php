@@ -32,7 +32,7 @@ border: none;
 </head>
 <body>
   <?php
-include('navbar_admin.html');
+include('navbar_admin.php');
 ?>
   <div class="container">
 
