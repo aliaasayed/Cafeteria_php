@@ -8,6 +8,8 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+include 'connection.php';
+include 'user_class.php';
 
 function check($data) 
 {
@@ -21,12 +23,18 @@ function check($data)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
   {
-      $firstname = check($_POST["First_name"]);
-      $lastname = check($_POST["Last_name"]);
-      $address = check($_POST["Address"]);
-      $user = check($_POST["User_name"]);
+      $name = check($_POST["username"]);
+      
+      $email = check($_POST["email"]);
+      $Room_no = check($_POST["Room_no"]);
       $Pass = check($_POST["password"]);
-      $department = check($_POST["Department"]);  
+      $encrypted_pass = md5($Pass);
+
+      $confpassword = check($_POST["confpassword"]);
+      $encrypted_conf = md5($confpassword);
+
+      $Ext = check($_POST["Ext"]); 
+
       $empty_cells = array();
       foreach ($_POST as $key => $value) 
         {
@@ -36,7 +44,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
               }
         }
 
+echo($encrypted_pass);
+echo($encrypted_conf);
+if ($encrypted_conf==$encrypted_pass)
+{
+   $user = new user();
+        $user->addUser($name,$email,$encrypted_pass,$Room_no,$Ext,'');
+}
+  
+  elseif ($encrypted_conf!=$encrypted_pass) 
+  {
+    $pass_error= "password doesn't match the confirmation";
+    header("Location: adduser.php?sended=$pass_error");
+  }
 
+
+
+
+
+}
 
 
 
