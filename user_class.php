@@ -58,6 +58,57 @@ class user
            $stmt->execute();
            return true;
           }
+  
+  public function getUser_id($Username)
+  {
+    global $conn;
+    $query = "SELECT user_ID FROM user where user_name='$Username'";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    $value = $statement->fetch(PDO::FETCH_ASSOC);
+    $id=$value['user_ID'];
+    return $id;
+    
+  }
+  
+  public function getAll_rooms()
+  {
+    global $conn;
+    $query = "SELECT Room_no FROM user ";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+     $data[]=$row;
+
+     }
+     return $data;
+    
+  }
+
+  public function getAll_users()
+  {
+    global $conn;
+    $query = "SELECT user_ID,user_name FROM user ";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+     $data[]=$row;
+
+     }
+     return $data;
+    
+  }
+
+  public function getUsername($email)
+  {
+    global $conn;
+    $query = "SELECT user_name FROM user where email='$email'";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    $value = $statement->fetch(PDO::FETCH_ASSOC);
+    return $value['user_name'];
+    
+  }
 
 }
 
