@@ -22,7 +22,7 @@ if($stmt->rowCount() > 0) {
 
   echo"not done";
 } else {
-header("location:login.php");
+header("location:index.php");
 echo"done";
 }
 

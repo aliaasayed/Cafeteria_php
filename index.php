@@ -16,10 +16,10 @@
 
 <div  id="main" class="container">
   <h2>login</h2>
-  <form class="form-horizontal" action="login.php" method="post">
+  <form class="form-horizontal" action="index.php" method="post">
     <div class="form-group">
 <div class="imgcontainer">
-      <img src="img_avatar2.png" alt="User_image" class="avatar">
+      <img src="photo_5.png" alt="User_image" class="avatar">
     </div>
       <label class="control-label col-sm-2" for="email">Email:</label>
       <div class="col-sm-10">
@@ -47,17 +47,17 @@
   </form>
 </div>
 <?php
-echo "<span class=error >".$_GET['E'] ."</span>";
+//echo "<span class=error >".$_GET['E'] ."</span>";
 
  ?>
 
 
 <?php
-session_start();
-$_SESSION['email']=$_POST['email'];
-$_SESSION['password']=$_POST['password'];
+@session_start();
+@$_SESSION['email']=$_POST['email'];
+@$_SESSION['password']=$_POST['password'];
 
-if($_POST['email']=='admin@admin' && $_POST['password']=='admin')
+if(@$_POST['email']=='admin@admin' && $_POST['password']=='admin')
 {
   header("location:orders_admin.php");
 }elseif(!empty($_POST['email'])&&!empty($_POST['password'])){
