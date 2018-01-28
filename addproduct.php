@@ -1,11 +1,12 @@
+<?php include('navbar_admin.php');?>
 <!DOCTYPE html>
 <html>
 <head>
 	 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 
 	<title></title>
 </head>
@@ -13,7 +14,7 @@
 <body>
 	<div class="container">
  	 <div class="row">
-	<form action="addproductback.php" method="POST">
+	<form action="addproductback.php" method="POST" enctype="multipart/form-data">
 		<div>
 			<header>
 				<h1>
@@ -23,7 +24,7 @@
 
 			<div>
 				<label class="col-sm-1 control-label ">Product</label>
-				<input type="text" name="ProductName" placeholder="ProductName" 
+				<input type="text" name="ProductName" placeholder="ProductName"
 				class="col-sm-4 control-label offset-sm-2" required>
 			</div>
 
@@ -34,39 +35,38 @@
 
 			<div>
 				<label class="col-sm-1 control-label ">Category</label>
-				<select class="col-sm-3 control-label offset-sm-2" name="Category">
+				<select class="col-sm-4 control-label offset-sm-2" name="Category">
 					<option >Hot Drinks</option>
 					<option >Cold Drinks</option>
 				</select>
-				<a href="">Add Category</a>
 			</div>
 			<div>
 				<label class="col-sm-1 control-label ">Product Picture</label>
-				<input type="file" name="ProductPicture" class="col-sm-3 control-label offset-sm-1" name="Image" >
+				<input type="file" name="fileToUpload" id="fileToUpload" class="col-sm-6 control-label offset-sm-1">
 				<br>
 				<br>
 			</div>
 			<div>
 				 <button  type="reset" class="btn btn-primary col-sm-2 offset-sm-0">reset</button>
-      			 <button type="submit" class="btn btn-primary col-sm-2 offset-sm-2">Save</button>
-  				 
+      			 <button type="submit" name="submit" class="btn btn-primary col-sm-2 offset-sm-2">Save</button>
+
 			</div>
 
 			<div>
-				
+
 				<?php
-          if ($_SERVER["REQUEST_METHOD"] == "GET") 
-              {
-                $errors_array = explode(":", $_GET["sended"]);
-                foreach ($errors_array as $current)
-                {
-                  echo $current."<br>";
-                }
-              } 
+          // if ($_SERVER["REQUEST_METHOD"] == "GET")
+          //     {
+          //       $errors_array = explode(":", $_GET["sended"]);
+          //       foreach ($errors_array as $current)
+          //       {
+          //         echo $current."<br>";
+          //       }
+          //     }
        			 ?>
 			</div>
 
-			
+
 
 		</div>
 		</form>
