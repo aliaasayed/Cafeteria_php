@@ -13,45 +13,71 @@
  
 </head>
 <header>
-<?php include('navbar_admin.php');?>
+<?php 
+session_start();
+$email=$_SESSION['email'];
+$password=$_SESSION['password'];
+include('navbar_admin.php');?>
 </header>
 <body>
 <div class="container">
 	<div class="row">
 		<label class="text-primary" id="user_name">Admin </label>
-		<img id ="user_photo" src="img/cola_2.png" class="img-rounded">
+		<img id ="user_photo" src="<?php include('user_class.php'); 
+    $user=new user();
+    $src=$user->get_Userimage($email); 
+    echo $src;
+
+     ?>" class="img-rounded">
 	</div>
 	<div class="row"  >
-		<form method="POST" >
+		<form method="POST" action="insert_order.php">
 		<div class="col-sm-4 well" id="reciept">
 
+        <input id="products_num" type="hidden" name="products_num">    
+        <input id="order_amount" type="hidden" name="amount">  
         <p id="label_notes">Notes</p> <textarea rows="5" cols="13" name="Notes"></textarea>
         <br>
         <br>
          Room
-        <select class="selectpicker" title="Choose your location" data-width=fit>
-		  <option>2023</option>
-		  <option>2012</option>
-		  <option>1012</option>
+        <select id="select_Room" name="Room" class="selectpicker" title="Choose your location" data-width=fit required="">
+		 <script type="text/javascript">
+
+	        Options="<?php 
+	        foreach($user->getAll_rooms() as $value){
+			 extract($value);
+	         echo $Room_no;
+	         echo '\n';
+	        }
+        ?>"    	
+        </script>
 		</select>
         <hr>
 
-        <label name="Total" style="display: block;">Total</label>
+        <label id="Total" name="Total"></label>
+        <label > EGP</label>
 	    <button type="submit" name="submit"  class="btn btn-success">Confirm </button>	
-	    </form>
-
-
-
-		</div>	
+	    
+		</div>
         <div col="col-sm-8">
         <center>
          <LABEL>Add to User</LABEL> 
-         <select class="selectpicker" title="Choose the User" style="float: right;">
-		  <option>Sarah</option>
-		  <option>Hesham</option>
+         <select class="selectpicker" title="Choose the User" style="float: right;" name="user_id" id="user_id">
+		  <script type="text/javascript">
+	        User_name_options="<?php foreach($user->getAll_users() as $value){
+			 extract($value);
+			 echo $user_ID.",";
+	         echo $user_name;
+	         echo '\n';
+	        }
+        ?>"    	
+        </script>
 		</select>
+      
         </div>
         </center>
+        <input type="hidden" name="admin" value="1" id="admin">
+        </form>
         <hr>
 	    <div class="col-sm-8 " >
         <div class="panel panel-default" >   
