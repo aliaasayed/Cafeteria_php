@@ -1,0 +1,27 @@
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+#main{
+width: 550px;
+}
+
+
+section{
+
+border:none;
+width: 85%;
+height: 200px;
+float:left;
+text-align: left;
+}
+th{
+background-color: gray;
+
+}
