@@ -87,16 +87,28 @@ class Product {
           return $data;
 
           }
-          //update specific product status
-         public function update($product_name,$status){
+        //  update specific product status
+         public function update_status($product_name,$status){
            global  $conn;
             $query = "UPDATE product
-             SET status='$status'
-             WHERE product_name ='$product_name' ";
+            SET status='$status'
+            WHERE product_name ='$product_name' ";
              $stmt = $conn->prepare($query);
              $stmt->execute();
              return true;
             }
+
+            //select table product - order
+            public function order_product($user_id){
+                global  $conn;
+            $query="SELECT product.image,product.product_name,order_product.Quantity,product.price,orders.amount FROM product , order_product ,orders WHERE
+             order_product.product_id=product.product_ID and order_product.order_id=orders.order_id AND user_id='$user_id' ";
+             $stmt = $conn->prepare($query);
+             $stmt->execute();
+             $data = $stmt->fetch(PDO::FETCH_ASSOC);
+             return $data;
+           }
+
 
 
 
@@ -108,7 +120,7 @@ class Product {
 // //how to use function
 //
 
- $p = new product(); //create object of class
+// $p = new product(); //create object of class
 
 // // loop for all column in table
 // foreach($p->select_order() as $value){
