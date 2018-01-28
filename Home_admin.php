@@ -87,7 +87,7 @@ include('navbar_admin.php');?>
         <?php 
         
         include('product_class.php');
-        $p = new product(); 
+        $p = new Product(); 
 		?>
 		
 		 DATA="<?php foreach($p->showData() as $value){
