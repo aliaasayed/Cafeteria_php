@@ -3,7 +3,7 @@
 <head>
   <title>Add User</title>
 
-  
+
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 
    <meta charset="utf-8">
@@ -18,9 +18,9 @@
 <body>
 <div class="container">
   <div class="row">
-<form action="adduserback.php" method="POST">
+<form action="adduserback.php" method="POST" enctype="multipart/form-data">
   <h1> Add User </h1>
-         
+
     <label class="col-sm-1 control-label " >Name</label>
     <input type="text" placeholder="Username" name="username" class="col-sm-3 control-label offset-sm-2" for="formGroupInputLarge" required ><br><br>
 
@@ -41,29 +41,29 @@
   <input type="number" placeholder="Ext." name="Ext" class="col-sm-2 control-label offset-sm-2" for="formGroupInputLarge" required ><br><br>
 
   <label class="col-sm-1 control-label " >Profile Picture</label>
-  <input type="file" class="offset-sm-1" ><br><br>
-  
+  <input type="file" name="fileToUpload" id="fileToUpload" class="offset-sm-1" ><br><br>
+
     <!--  --><div class="form-group row">
-   <!-- <div class="col-sm-10 offset-sm-2"> --> 
+   <!-- <div class="col-sm-10 offset-sm-2"> -->
 
       <button  type="reset" class="btn btn-primary col-sm-2 offset-sm-1">reset</button>
-      <button type="submit" class="btn btn-primary col-sm-2 offset-sm-3">Save</button>
-  
+      <button type="submit" name="submit" class="btn btn-primary col-sm-2 offset-sm-3">Save</button>
+
     </div>
 
 <div>
   <?php
-          if ($_SERVER["REQUEST_METHOD"] == "GET") 
+          if ($_SERVER["REQUEST_METHOD"] == "GET")
               {
 
-                $errors = $_GET["sended"];
+                @$errors = $_GET["sended"];
                   echo $errors."<br>";
-                
-              } 
+
+              }
         ?>
 
 </div>
-  
+
 </form>
 
 </div>
