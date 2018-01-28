@@ -8,15 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-	<style type="text/css">
-		.delete
-		{
-			width: 10px;
-			height: 5px;
-		}
-
-
-	</style>
+	
 
 
 </head>
@@ -89,15 +81,35 @@ console.log(Object.keys(myarr).length)
 for(i=0; i<Object.keys(myarr).length; i++)
 	{
 			var product = document.getElementById('tablebody');
-			user.innerHTML += '<tr><td id="user_name">'+myarr[i]["user_name"]+'</td><td id="Room_no">'+myarr[i]["Room_no"]+'</td><td id="Picture">'+myarr[i]["Picture"]+'</td><td id="Ext">'+myarr[i]["Ext"]+'</td><td id="action"><input type="button" class"delete" name"deleteproduct" value"Delete"><input type="button" class"update" name"updateproduct" value"update">'
-
-
-/*<input type="button" class="delete" name="'+choose_file.value+'" id="del'+play_list.length+'" value="Delete">*/
-
-
-
+			product.innerHTML += '<tr id="row'+myarr[i]["user_ID"]+'"><td id="user">'+myarr[i]["user_name"]+'</td><td id="Room_no">'+myarr[i]["Room_no"]+'</td><td id="image">'+myarr[i]["Picture"]+'</td><td id="Ext">'+myarr[i]["Ext"]+'</td><td id="action"><input type="button" class="delete" name="deleteuser" value="Delete" id="'+myarr[i]["user_ID"]+'"><input type="button" class="update" name="updateuser" id="update'+myarr[i]["user_ID"]+'" value="update"></td></tr>'
 	}
 
+
+
+for(let i=0; i<Object.keys(myarr).length; i++)
+{
+	document.getElementById(myarr[i]["user_ID"]).addEventListener("click",function(e){
+				e.preventDefault()
+				document.getElementById("row"+e.target.id).outerHTML = ""
+				window.location.href='deleteuser.php?userid='+myarr[i]["user_ID"];
+				
+
+})
+}
+
+
+
+for(let i=0; i<Object.keys(myarr).length; i++)
+{
+	document.getElementById("update"+myarr[i]["user_ID"]).addEventListener("click",function(e){
+				e.preventDefault()
+				
+				window.location.href='updateuser.php?userid='+myarr[i]["user_ID"];
+				
+
+				
+				})
+}
 
 	</script>
 

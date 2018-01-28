@@ -13,7 +13,7 @@
 <body>
 	<div class="container">
  	 <div class="row">
-	<form action="updateproductback.php" method="POST">
+	<form action="updateproductback.php?productid=<?php echo($_GET["productid"])?>" method="POST">
 		<div>
 			<header>
 				<h1>
@@ -52,17 +52,7 @@
   				 
 			</div>
 			<div>
-				
-			<?php 
-
-						
-
-
-
-
-			 ?>
-
-			
+		
 			 </div>
 		</div>
 		</form>

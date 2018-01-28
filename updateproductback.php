@@ -42,7 +42,7 @@ function check($data)
           $produ = new product();
          $produ->update($id_update,$Productname,$Price,$Category,$Image);
          /* $produ->insertData($Productname,$Price,$Category,$Image);*/
-          header("Location: updateproduct.php");
+          header("Location: allproductsback.php");
 
 
 
