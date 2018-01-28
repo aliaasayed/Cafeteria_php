@@ -63,6 +63,54 @@ class Product {
         $stmt->execute([]);
         return true;
         }
+        //select table orders admin from user and orders
+          public function select_order(){
+              global  $conn;
+          $query="SELECT orders.user_id,concat(orders.date ,' ',orders.time) as order_date ,user.user_name ,user.Room_no,user.Ext,orders.status FROM orders,
+          user WHERE orders.user_id = user.user_ID";
+          $stmt = $conn->query($query) or die("failed!");
+          while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+          $data[]=$row;
+
+          }
+          return $data;
+
+          }
+          //select table product of order admin from user and orders
+          public function select_product_order(){
+              global  $conn;
+          $query="SELECT orders.user_id,concat(orders.date ,' ',orders.time) as order_date ,user.user_name ,user.Room_no,user.Ext,orders.status FROM orders,
+          user WHERE orders.user_id = user.user_ID";
+          $stmt = $conn->query($query) or die("failed!");
+          while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+          $data[]=$row;
+
+          }
+          return $data;
+
+          }
+        //  update specific product status
+         public function update_status($product_name,$status){
+           global  $conn;
+            $query = "UPDATE product
+            SET status='$status'
+            WHERE product_name ='$product_name' ";
+             $stmt = $conn->prepare($query);
+             $stmt->execute();
+             return true;
+            }
+
+            //select table product - order
+            public function order_product($user_id){
+                global  $conn;
+            $query="SELECT product.image,product.product_name,order_product.Quantity,product.price,orders.amount FROM product , order_product ,orders WHERE
+             order_product.product_id=product.product_ID and order_product.order_id=orders.order_id AND user_id='$user_id' ";
+             $stmt = $conn->prepare($query);
+             $stmt->execute();
+             $data = $stmt->fetch(PDO::FETCH_ASSOC);
+             return $data;
+           }
+  
 
 
       }
