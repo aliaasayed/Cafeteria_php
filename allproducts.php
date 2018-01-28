@@ -81,7 +81,7 @@ console.log(Object.keys(myarr).length)
 for(let i=0; i<Object.keys(myarr).length; i++)
 	{
 			var product = document.getElementById('tablebody');
-			product.innerHTML += '<tr id="row'+myarr[i]["product_ID"]+'"><td id="Product">'+myarr[i]["product_name"]+'</td><td id="Price">'+myarr[i]["price"]+'</td><td id="image">'+myarr[i]["image"]+'</td><td id="status'+myarr[i]+'"><input type="button" class="status" name="productstatus" value="'+myarr[i]["status"]+'"></td><td id="action"><input type="button" class="delete" name="deleteproduct" value="Delete" id="'+myarr[i]["product_ID"]+'"><input type="button" class="update" name="updateproduct" id="update'+myarr[i]["product_ID"]+'" value="update"></td></tr>'
+			product.innerHTML += '<tr id="row'+myarr[i]["product_ID"]+'"><td id="Product">'+myarr[i]["product_name"]+'</td><td id="Price">'+myarr[i]["price"]+'</td><td id="image">'+myarr[i]["image"]+'</td><td id="status'+myarr[i]+'"><input type="button" class="status" name="productstatus" id="status'+myarr[i]["product_ID"]+'" value="'+myarr[i]["status"]+'"></td><td id="action"><input type="button" class="delete" name="deleteproduct" value="Delete" id="'+myarr[i]["product_ID"]+'"><input type="button" class="update" name="updateproduct" id="update'+myarr[i]["product_ID"]+'" value="update"></td></tr>'
 			
 			
 }
@@ -102,14 +102,15 @@ for(let i=0; i<Object.keys(myarr).length; i++)
 	document.getElementById("update"+myarr[i]["product_ID"]).addEventListener("click",function(e){
 				e.preventDefault()
 				
+				
 				window.location.href='updateproduct.php?productid='+myarr[i]["product_ID"];
 				
 
 				
 				})
 }
-	
-	for(let i=0; i<Object.keys(myarr).length; i++)
+
+for(let i=0; i<Object.keys(myarr).length; i++)
 {
 	document.getElementById("status"+myarr[i]["product_ID"]).addEventListener("click",function(e){
 				e.preventDefault()
@@ -134,7 +135,6 @@ for(let i=0; i<Object.keys(myarr).length; i++)
 				
 				})
 }
-
 
 </script>
 
