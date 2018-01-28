@@ -76,11 +76,10 @@ include('navbar_user.php');?>
         <div class="panel-body" id="product_list">   
 	   
 	    <script type="text/javascript">
-        <?php 
-        
+        <?php       
         include('product_class.php');
-        $p = new product(); 
-		?>
+        $p = new Product(); 
+		    ?>
 		
 		 DATA="<?php foreach($p->showData() as $value){
 		 extract($value);
