@@ -37,7 +37,7 @@ class Product {
        public function update($product_ID,$product_name,$price,$category,$image,$status){
          global  $conn;
           $query = "UPDATE product
-           SET product_name ='$product_name' ,price ='$price',category='$category',image='$image' , status='$status'
+           SET product_name ='$product_name' ,price ='$price',category='$category',image='$image' , status='available'
            WHERE product_ID ='$product_ID' ";
            $stmt = $conn->prepare($query);
            $stmt->execute();
@@ -45,18 +45,22 @@ class Product {
           }
 
         //insert new product in table product
-        public function insertData($product_name,$price,$category,$image,$status){
-         $query = "INSERT INTO product SET product_name='$product_name', price ='$price' , category='$category', image='$image', status='$status' ";
+        public function insertData($product_name,$price,$category,$image){
+         global $conn;
+         /*$query = "INSERT INTO product SET product_name='$product_name', price ='$price' , category='$category', image='$image', status='available' ";*/
+         $query = "INSERT INTO product SET product_name='".$product_name."',price ='".$price."',category='".$category."',image='".$image."'";
+         
          $stmt = $conn->prepare($query);
-         $stmt->execute();
+         $stmt->execute([]);
          return true;
          }
 
         //delete some product of table product by product id
         public function deleteData($product_ID){
+          global $conn;
         $query="DELETE FROM product WHERE product_ID='$product_ID' ";
         $stmt = $conn->prepare($query);
-        $stmt->execute();
+        $stmt->execute([]);
         return true;
         }
 
@@ -65,28 +69,7 @@ class Product {
 
 
 
-//how to use function
 
-$p = new product(); //create object of class
-// loop for all column in table
-foreach($p->showData() as $value){
- extract($value);
-
-
-echo "<br> no:".$product_ID;
-echo "<br> name:".$product_name;
-echo "<br> price:".$price;
-echo "<br> category:".$category;
-
-}
-
-//get product by id
-extract($p->getById(1));
-echo "<br><br> specific product ";
-echo "<br> no:".$product_ID;
-echo "<br> name:".$product_name;
-echo "<br> price:".$price;
-echo "<br> category:".$category;
 
 
 
