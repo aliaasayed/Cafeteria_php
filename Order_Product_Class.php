@@ -29,11 +29,11 @@ class Order_Product{
    
   } 
 
-  public function insert_order_product($order_id,$product_id,$quantity,$notes)
+  public function insert_order_product($order_id,$product_id,$quantity)
   {
     global $conn;
 
-    $query="INSERT INTO order_product(order_id,product_id,Quantity,notes) values ('$order_id','$product_id','$quantity','$notes') ";
+    $query="INSERT INTO order_product(order_id,product_id,Quantity) values ('$order_id','$product_id','$quantity') ";
 
     $result=$conn->prepare($query);
     $result->execute();
@@ -41,11 +41,9 @@ class Order_Product{
 
   } 
 
-  //////get_latest_order_product
+
 }  
 
-$order_1=new Order_Product();
-$result=$order_1->insert_order_product(1,1,5,"1 tea extra sugar");
 
 
 ?>
