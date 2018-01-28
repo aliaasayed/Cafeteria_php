@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$databasename = "assem";
-$serverpassword = "1010";
+$databasename = "aliaa";
+$serverpassword = "aliaa123";
 $dbname = "cafteria";
 
 try {
