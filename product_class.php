@@ -49,7 +49,7 @@ class Product {
          global $conn;
          /*$query = "INSERT INTO product SET product_name='$product_name', price ='$price' , category='$category', image='$image', status='available' ";*/
          $query = "INSERT INTO product SET product_name='".$product_name."',price ='".$price."',category='".$category."',image='".$image."'";
-         
+
          $stmt = $conn->prepare($query);
          $stmt->execute([]);
          return true;

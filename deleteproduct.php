@@ -18,7 +18,7 @@ echo($id_del);
 $produ = new product();
 $produ->deleteData($id_del);
 /*$return = $produ->showData();*/
- header("Location: allproductsback.php");
+ header("Location: allproducts.php");
 
 ?>
 </body>

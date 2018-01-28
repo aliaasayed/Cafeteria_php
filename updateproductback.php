@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 include 'connection.php';
 include 'product_class.php';
 
-function check($data) 
+function check($data)
 {
   $data = trim($data);
   $data = stripslashes($data);
@@ -23,11 +23,11 @@ function check($data)
 
       $Productname = check($_POST["ProductName"]);
       $Price = check($_POST["price"]);
-       
+
       $empty_cells = array();
-      foreach ($_POST as $key => $value) 
+      foreach ($_POST as $key => $value)
         {
-           if (empty($value)) 
+           if (empty($value))
               {
                 array_push($empty_cells, $key);
               }
@@ -42,7 +42,7 @@ function check($data)
           $produ = new product();
          $produ->update($id_update,$Productname,$Price,$Category,$Image);
          /* $produ->insertData($Productname,$Price,$Category,$Image);*/
-          header("Location: allproductsback.php");
+          header("Location: allproducts.php");
 
 
 
