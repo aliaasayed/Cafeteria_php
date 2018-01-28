@@ -109,7 +109,17 @@ class user
     return $value['user_name'];
     
   }
+public function get_Userimage($email)
+{
+  global $conn;
+  $query="Select Picture from user where email='$email'";
+   $result=$conn->prepare($query);
+    $result->execute();
+    $max_row = $result->fetch(PDO::FETCH_ASSOC);
+    $max=$max_row['Picture'];
+   return $max;
 
+}
 }
 
 
