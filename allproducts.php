@@ -108,6 +108,33 @@ for(let i=0; i<Object.keys(myarr).length; i++)
 				
 				})
 }
+	
+	for(let i=0; i<Object.keys(myarr).length; i++)
+{
+	document.getElementById("status"+myarr[i]["product_ID"]).addEventListener("click",function(e){
+				e.preventDefault()
+				
+				if(e.target.value=="available")
+				{
+					e.target.value = "unavailable"
+					var new_status = e.target.value
+				}
+
+				else
+				{
+					e.target.value = "available"
+					var new_status = e.target.value
+				}
+
+				console.log(new_status)
+				
+
+				window.location.href='productstatus.php?productid='+myarr[i]["product_ID"]+'&status='+new_status;				
+
+				
+				})
+}
+
 
 </script>
 
