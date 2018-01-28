@@ -13,6 +13,10 @@ $product2 = new product();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="main.css"/>
 <style>
+#tr{
+height: 150px;
+
+}
 #img-admin{
 float: right;
   border: none;
@@ -62,32 +66,31 @@ include('navbar_admin.php');
 foreach($product1->select_order() as $value){
  extract($value);
 
-
-//echo "<br> no:".$user_id;
-// echo "<br> name:".$product_name;
-// echo "<br> price:".$price;
-// echo "<br> category:".$category;
-
-
-
   echo  "<tr><td>".$user_id."</td><td>".$order_date."</td><td>".$user_name."</td>";
-  echo   "<td>".$Room_no."</td><td>".$Ext."</td><td>".$status."</td></tr>";
-  if (is_array($product2->order_product($user_id,$order_date)) || is_object($product2->order_product($user_id,$order_date)))
+  echo   "<td>".$Room_no."</td><td>".$Ext."</td><td>".$status."</td></tr><tr id='tr'>";
+  $total_amount='';
+  if (is_array($product2->order_product($user_id,$order_id)) || is_object($product2->order_product($user_id,$order_id)))
   {
-foreach($product2->order_product($user_id,$order_date) as $values) {
+foreach($product2->order_product($user_id,$order_id) as $values) {
   extract($values);
-   echo  "<tr><td>".$image."</td><td>".$product_name."</td><td>".$Quantity."</td>";
-   echo   "<td>".$price."</td></tr>";
-  echo "<tr><td></td><td></td><td></td><td></td><td>Total</td><td>".$amount."</td></tr>";
-  echo       "<tbody>";
+//echo $values['image'];
+echo "<td><figure id='img-admin'>";
+echo "<img src='$image' width='80' height='80' />";
+echo "<figcaption>".$product_name." ".$price. "LE </figcaption><firgcapyion>Quantity ".$Quantity."</figcaption></figure>";
+$total_amount=$amount;
 }
 }
 
-}
 
+echo "</tr>";
+echo "<tr><td colspan=6 style='text-align:right;'> total : ".$total_amount."</td></tr>";
+}
  ?>
+
+<tr><td></td><td></td><td></td><td></td></tr>
+<tbody>
 </table>
 </section>
-</div>";
+</div>
 </body>
 </html>

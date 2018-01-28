@@ -20,7 +20,7 @@ class Product {
      while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
      $data[]=$row;
 
-     }
+      }
      return $data;
      }
 
@@ -64,7 +64,9 @@ class Product {
           //select table orders admin from user and orders
           public function select_order(){
               global  $conn;
-          $query="SELECT orders.user_id, orders.date,concat(orders.date ,' ',orders.time) as order_date ,user.user_name ,user.Room_no,user.Ext,orders.status FROM orders,
+          $query="SELECT orders.order_id , orders.user_id, orders.date
+          ,concat(orders.date ,' ',orders.time) as order_date ,user.user_name
+          ,user.Room_no,user.Ext,orders.status FROM orders,
           user WHERE orders.user_id = user.user_ID";
           $stmt = $conn->query($query) or die("failed!");
           while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -99,17 +101,19 @@ class Product {
             }
 
             //select table product - order
-            public function order_product($user_id,$order_date){
+            public function order_product($user_id,$order_id){
                 global  $conn;
-            $query="SELECT concat(orders.date ,' ',orders.time) as order_date,product.image,product.product_name,order_product.Quantity,product.price,orders.amount FROM product , order_product ,orders WHERE
+            $query="SELECT product.image,product.product_name
+            ,order_product.Quantity,
+            product.price,orders.amount FROM product , order_product ,orders WHERE
              order_product.product_id=product.product_ID and order_product.order_id=orders.order_id
-              AND user_id='$user_id' AND concat(orders.date ,' ',orders.time)= '$order_date' ";
+              AND   user_id='$user_id' AND order_product.order_id='$order_id' ";
               $stmt = $conn->query($query) or die("failed!");
               while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
               $datas[]=$row;
-
-              return $datas;
             }
+              return @ $datas;
+
            }
 
 
@@ -123,18 +127,18 @@ class Product {
 // //how to use function
 //
 
-// $p = new product(); //create object of class
-
-// // loop for all column in table
-// foreach($p->select_order() as $value){
+//  $p = new product(); //create object of class
+//
+// // // loop for all column in table
+//  foreach($p->order_product(2,1) as $value){
 //  extract($value);
-// echo "<br> no:".$user_id;
-// echo "<br> name:".$user_name;
-// echo "<br> price:".$Room_no;
-// echo "<br> category:".$Ext;
-//
+// echo "<br> no:".$product_name;
+// echo "<br> name:".$price;
+// echo "<br> price:".$amount;
+//echo "<br> category:".$Ext;
+
 // }
-//
+
 // //get product by id
 // extract($p->getById(1));
 // echo "<br><br> specific product ";
