@@ -8,7 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
+<style type="text/css">
+	#product_img{
+		width: 70px;
+		height: 70px;
+	}
+</style>
 
 </head>
 <body>
@@ -81,7 +86,7 @@ console.log(Object.keys(myarr).length)
 for(let i=0; i<Object.keys(myarr).length; i++)
 	{
 			var product = document.getElementById('tablebody');
-			product.innerHTML += '<tr id="row'+myarr[i]["product_ID"]+'"><td id="Product">'+myarr[i]["product_name"]+'</td><td id="Price">'+myarr[i]["price"]+'</td><td id="image">'+myarr[i]["image"]+'</td><td id="status'+myarr[i]+'"><input type="button" class="status" name="productstatus" id="status'+myarr[i]["product_ID"]+'" value="'+myarr[i]["status"]+'"></td><td id="action"><input type="button" class="delete" name="deleteproduct" value="Delete" id="'+myarr[i]["product_ID"]+'"><input type="button" class="update" name="updateproduct" id="update'+myarr[i]["product_ID"]+'" value="update"></td></tr>'
+			product.innerHTML += '<tr id="row'+myarr[i]["product_ID"]+'"><td id="Product">'+myarr[i]["product_name"]+'</td><td id="Price">'+myarr[i]["price"]+'</td><td id="image"><img id="product_img" src="'+myarr[i]["image"]+'"></td><td id="status'+myarr[i]+'"><input type="button" class="status" name="productstatus" id="status'+myarr[i]["product_ID"]+'" value="'+myarr[i]["status"]+'"></td><td id="action"><input type="button" class="delete" name="deleteproduct" value="Delete" id="'+myarr[i]["product_ID"]+'"><input type="button" class="update" name="updateproduct" id="update'+myarr[i]["product_ID"]+'" value="update"></td></tr>'
 			
 			
 }
