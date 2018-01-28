@@ -44,14 +44,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         	$produ = new product();
           $produ -> insertData($Productname,$Price,$Category,$Image);
          
-        }*/
+        */
 
 
           $Category = $_POST["Category"];
-          $Image = "btek";
+          $Image = "no image";
           $produ = new product();
           $produ->insertData($Productname,$Price,$Category,$Image);
-          header("Location: addproduct.html");
+          header("Location: addproduct.php");
+
+
+
+          /*
+          }
+            else
+            {
+              $array_to_send = implode(":", $empty_cells);
+              header("Location: addproduct.php?sended=$array_to_send");
+            }
+          */
           
    }
 
