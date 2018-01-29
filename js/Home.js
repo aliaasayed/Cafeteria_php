@@ -137,16 +137,16 @@ images.forEach(function(elem) {
     product_add.addEventListener('click',function()
     {
       product_quantity.value++ ;
-      price.innerText=parseInt(price.innerText)+parseInt(data_2d[elem.id-1][2])
-      if(order_amount.value == data_2d[elem.id-1][2] || counter_clicks==1 )
+      price.innerText=parseInt(price.innerText)+parseInt(data_2d[elem.id][2])
+      if(order_amount.value == data_2d[elem.id][2] || counter_clicks==1 )
         {
          order_amount.value=parseInt(price.innerText)
          Total.innerText=parseInt(price.innerText)
         }
       else
         {
-         order_amount.value=parseInt(order_amount.value)+parseInt(data_2d[elem.id-1][2])
-         Total.innerText=parseInt(Total.innerText)+parseInt(data_2d[elem.id-1][2])
+         order_amount.value=parseInt(order_amount.value)+parseInt(data_2d[elem.id][2])
+         Total.innerText=parseInt(Total.innerText)+parseInt(data_2d[elem.id][2])
 
         }
 
@@ -161,16 +161,15 @@ images.forEach(function(elem) {
       if(product_quantity.value > 1)
       {
         product_quantity.value-- ;
-        price.innerText=price.innerText-parseInt(data_2d[elem.id-1][2])
-        if(order_amount.value ==data_2d[elem.id-1][2] || counter_clicks==1 )
+        price.innerText=price.innerText-parseInt(data_2d[elem.id][2])
+        if(order_amount.value ==data_2d[elem.id][2] || counter_clicks==1 )
         {
          order_amount.value=parseInt(price.innerText)
          Total.innerText=parseInt(price.innerText)
         }
         else
         {
-         //order_amount.value=parseInt(order_amount.value)-parseInt(data_2d[elem.id-1][2])
-         Total.innerText=parseInt(Total.innerText)-parseInt(data_2d[elem.id-1][2])
+         Total.innerText=parseInt(Total.innerText)-parseInt(data_2d[elem.id][2])
 
         }
       }
