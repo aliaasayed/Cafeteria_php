@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
 include('product_class.php');
 $product1 = new product();
 $product2 = new product();

@@ -10,27 +10,33 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
   <link rel="stylesheet" type="text/css" href="css/style.css">
- 
+
 </head>
 <body>
 <header>
-<?php 
+<?php
 
 session_start();
+
+
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
 $email=$_SESSION['email'];
-$password=$_SESSION['password'];
+$password=md5($_SESSION['password']);
 
 include('navbar_user.php');?>
 </header>
 <div class="container">
 	<div class="row">
-		<label class="text-primary" id="user_name"> <?php 
+		<label class="text-primary" id="user_name"> <?php
         include('user_class.php');
         $user=new user();
         $username=$user->getUsername($email);
         echo $username;
 		?></label>
-		<img id ="user_photo" src="<?php $src=$user->get_Userimage($email); 
+		<img id ="user_photo" src="<?php $src=$user->get_Userimage($email);
     echo $src;
     ?>" class="img-rounded" >
 	</div>
@@ -42,8 +48,8 @@ include('navbar_user.php');?>
            $id=$user->getUser_id($username);
            echo $id;
           ?>" >
-        <input id="products_num" type="hidden" name="products_num">    
-        <input id="order_amount" type="hidden" name="amount">  
+        <input id="products_num" type="hidden" name="products_num">
+        <input id="order_amount" type="hidden" name="amount">
         <p id="label_notes">Notes</p> <textarea rows="4" cols="13" name="Notes" ></textarea>
         <br>
         <br>
@@ -55,35 +61,34 @@ include('navbar_user.php');?>
 	         echo $Room_no;
 	         echo '\n';
 	        }
-        ?>"    	
+        ?>"
         </script>
 		</select>
         <hr>
 
         <label id="Total" name="Total"></label>
         <label > EGP</label>
-	    <button type="submit" name="submit"  class="btn btn-success">Confirm </button>	
+	    <button type="submit" name="submit"  class="btn btn-success">Confirm </button>
 	     <input type="hidden" name="admin" value="0" id=admin>
 	    </form>
 
 
 
-		</div>	
+		</div>
 
 	    <div class="col-sm-8 " >
-        <div class="panel panel-default" >   
+        <div class="panel panel-default" >
 	    <div class="panel-heading">Products </div>
-        <div class="panel-body" id="product_list">   
-	   
+        <div class="panel-body" id="product_list">
+
 	    <script type="text/javascript">
-        <?php       
+        <?php
         include('product_class.php');
-        $p = new Product(); 
+        $p = new Product();
 		    ?>
-		
+
 		 DATA="<?php foreach($p->showData() as $value){
 		 extract($value);
-
          echo $product_ID.",";
 		 echo $product_name.",";
 		 echo  $price.",";
@@ -91,7 +96,7 @@ include('navbar_user.php');?>
          echo '\n';
         }
         ?>"
-        
+
         </script>
 	     <script type="text/javascript" src="js/Home.js"></script>
         </div>

@@ -7,6 +7,12 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+session_start();
+
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
 include 'connection.php';
 include 'user_class.php';
 
@@ -93,13 +99,13 @@ function check($data)
 {
         $user = new user();
         $user->update($id_update,$name,$email,$encrypted_pass,$Room_no,$Ext,$Picture);
-        header("Location: allusersback.php");
+				echo "<script>window.location.href='allusersback.php'</script>";
 }
 
   elseif ($encrypted_conf!=$encrypted_pass)
   {
     $pass_error= "password doesn't match the confirmation";
-    header("Location: allusersback.php?sended=$pass_error");
+		echo "<script>window.location.href='allusersback.php?sended=$pass_error'</script>";
   }
 
 

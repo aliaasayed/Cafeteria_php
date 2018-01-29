@@ -11,6 +11,12 @@ error_reporting(E_ALL);
 include 'connection.php';
 include 'user_class.php';
 
+session_start();
+
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
 
 $target_dir = "user_imgs/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -96,13 +102,13 @@ if ($encrypted_conf==$encrypted_pass)
 {
    $user = new user();
         $user->addUser($name,$email,$encrypted_pass,$Room_no,$Ext,$Picture);
-        //header("Location: adduser.php");
+				echo "<script>window.location.href='adduser.php'</script>";
 }
 
   elseif ($encrypted_conf!=$encrypted_pass)
   {
     $pass_error= "password doesn't match the confirmation";
-    header("Location: adduser.php?sended=$pass_error");
+		echo "<script>window.location.href='adduser.php?sended=$pass_error'</script>";
   }
 
 

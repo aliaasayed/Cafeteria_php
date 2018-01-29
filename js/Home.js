@@ -2,10 +2,13 @@
 var data_2d = DATA.split("\n").map(function(e) {
     return e.split(",").map(String);
 })
-data_2d.splice(2, 1);
+
 var row=data_2d.length
 var col=data_2d[0].length
+data_2d.splice(row-1, 1);
+row=data_2d.length
 images=[]
+
 
 var order_amount=document.getElementById('order_amount')
 var product_list=document.getElementById('product_list')
@@ -25,7 +28,8 @@ if(admin_or_user.value == '1')
     var User_name_options = User_name_options.split("\n").map(function(e) {
 return e.split(",").map(String);
  })
-    User_name_options.splice(2, 1);
+    var len=User_name_options.length
+    User_name_options.splice(len-1, 1);
 }
 
 
@@ -33,7 +37,7 @@ window.addEventListener('load',function(){
 
 if(admin_or_user.value == '1')
 {
-   
+
    for (var i = 0; i<User_name_options.length; i++){
 
     var opt = document.createElement("option");
@@ -42,7 +46,7 @@ if(admin_or_user.value == '1')
     select_User_name.add(opt);
     $('.selectpicker').selectpicker('refresh')
    }
-  
+
 
 }
 
@@ -55,14 +59,14 @@ if(admin_or_user.value == '1')
     $('.selectpicker').selectpicker('refresh')
 }
 
-console.log(opt);
+
  for(var i=0;i<row;i++){
-   
+
     var element=document.createElement('div')
     element.className="product_list_element"
  	var img=document.createElement('img')
  	img.src=data_2d[i][3]
-    img.id=data_2d[i][0]
+    img.id=i
  	img.className="product_photo"
     images.push(img)
 
@@ -79,29 +83,34 @@ console.log(opt);
     product_name.appendChild(price)
 
     element.appendChild(product_name)
+
+    var line_break=document.createElement('br')
+     element.appendChild(line_break)
+
     product_list.appendChild(element)
-    
+
  }
 
 
 images.forEach(function(elem) {
     elem.addEventListener("click", function() {
-     
-    counter_clicks++; 
+
+    counter_clicks++;
     products_num.value=parseInt(counter_clicks);
     var element=document.createElement('div')
     element.id="product" +elem.id
+    console.log(elem.id)
 
 
     var product_name=document.createElement('p')
-    product_name.innerText=data_2d[elem.id-1][1] + "  "
+    product_name.innerText=data_2d[elem.id][1] + "  "
     product_name.className="element_order"
     product_name.name="product_name_"+elem.id
     element.appendChild(product_name)
 
 
     var product_quantity=document.createElement('input')
-    product_quantity.name=elem.id
+    product_quantity.name=data_2d[elem.id][0]
     product_quantity.type="text"
     product_quantity.value=1
     product_quantity.style.width="50px"
@@ -109,9 +118,9 @@ images.forEach(function(elem) {
 
     var price=document.createElement('p')
     price.className="element_order"
-    price.innerText=data_2d[elem.id-1][2]
+    price.innerText=data_2d[elem.id][2]
     price.name="price"+elem.id
-    
+
     if(counter_clicks==1)
     {
         Total.innerText=parseInt(price.innerText)
@@ -140,7 +149,7 @@ images.forEach(function(elem) {
          Total.innerText=parseInt(Total.innerText)+parseInt(data_2d[elem.id-1][2])
 
         }
-      
+
     })
 
     element.appendChild(product_add)
@@ -164,8 +173,8 @@ images.forEach(function(elem) {
          Total.innerText=parseInt(Total.innerText)-parseInt(data_2d[elem.id-1][2])
 
         }
-      } 
-      
+      }
+
 
     })
     element.appendChild(product_del)
@@ -176,13 +185,13 @@ images.forEach(function(elem) {
     price_tag.innerText=" EGP  "
     element.appendChild(price_tag)
 
-    
+
     element.appendChild(price)
 
-    
+
     var product_delete=document.createElement('span')
     product_delete.className="glyphicon glyphicon-remove-circle "
-    
+
     product_delete.addEventListener('click',function()
     {
       order_amount.value=parseInt(order_amount.value)-parseInt(price.innerText)
@@ -197,7 +206,7 @@ images.forEach(function(elem) {
 
    reciept.insertBefore(element,reciept.firstChild)
 
-   
+
     });
 });
 

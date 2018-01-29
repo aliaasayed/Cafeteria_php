@@ -7,6 +7,12 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+session_start();
+
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
 include 'connection.php';
 include 'product_class.php';
 
@@ -99,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
           $Image = $target_file;
           $produ = new product();
           $produ->insertData($Productname,$Price,$Category,$Image);
-          header("Location: addproduct.php");
+					echo "<script> window.location.href='addproduct.php'</script>";
 
 
 

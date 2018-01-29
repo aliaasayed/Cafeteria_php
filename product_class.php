@@ -45,7 +45,7 @@ class Product {
           }
 
         //insert new product in table product
-        public function insertData($product_name,$price,$category,$image,$status){
+        public function insertData($product_name,$price,$category,$image,$status='available'){
           global  $conn;
          $query = "INSERT INTO product SET product_name='$product_name', price ='$price' , category='$category', image='$image', status='$status' ";
          $stmt = $conn->prepare($query);

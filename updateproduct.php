@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

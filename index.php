@@ -19,7 +19,7 @@
   <form class="form-horizontal" action="index.php" method="post">
     <div class="form-group">
 <div class="imgcontainer">
-      <img src="photo_5.png" alt="User_image" class="avatar">
+      <img src="img_avatar2.png" alt="User_image" class="avatar">
     </div>
       <label class="control-label col-sm-2" for="email">Email:</label>
       <div class="col-sm-10">
@@ -53,15 +53,16 @@
 
 
 <?php
-@session_start();
+
+session_start();
 @$_SESSION['email']=$_POST['email'];
-@$_SESSION['password']=$_POST['password'];
+@$_SESSION['password']=md5($_POST['password']);
 
 if(@$_POST['email']=='admin@admin' && $_POST['password']=='admin')
 {
-  header("location:orders_admin.php");
+  echo "<script>window.location.href='orders_admin.php'</script>";
 }elseif(!empty($_POST['email'])&&!empty($_POST['password'])){
-header("location:login_page.php");
+  echo "<script>window.location.href='login_page.php'</script>";
 }
 
  ?>

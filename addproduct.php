@@ -1,4 +1,10 @@
-<?php include('navbar_admin.php');?>
+<?php include('navbar_admin.php');
+session_start();
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,37 +32,42 @@
 					Add Product
 				</h1>
 			</header>
+			<hr>
 
-			<div>
+			<div class="row">
 				<label class="col-sm-1 control-label ">Product</label>
 				<input type="text" name="ProductName" placeholder="ProductName"
 				class="col-sm-4 control-label offset-sm-2" required>
 			</div>
+            <br>
 
-			<div>
+			<div class="row">
 				<label class="col-sm-1 control-label ">Price</label>
 				<input type="number" name="price" placeholder="price" class="col-sm-3 control-label offset-sm-2" required>
 			</div>
-
-			<div>
+            <br>
+			<div class="row">
 				<label class="col-sm-1 control-label ">Category</label>
-				<select class="col-sm-4 control-label offset-sm-2" name="Category">
+				<select class="col-sm-2 control-label offset-sm-2" name="Category">
 					<option >Hot Drinks</option>
 					<option >Cold Drinks</option>
 				</select>
 			</div>
-			<div>
+			<br>
+			<br>
+			<div class="row">
 				<label class="col-sm-1 control-label ">Product Picture</label>
 				<input type="file" name="fileToUpload" id="fileToUpload" class="col-sm-6 control-label offset-sm-1">
 				<br>
 				<br>
 			</div>
-			<div>
-				 <button  type="reset" class="btn btn-primary col-sm-2 offset-sm-0">reset</button>
-      			 <button type="submit" name="submit" class="btn btn-primary col-sm-2 offset-sm-2">Save</button>
+			<br>
+			<div class="row">
+				 <button  type="reset" class="btn btn-success col-sm-2 offset-sm-0">Reset</button>
+      			 <button type="submit" name="submit" class="btn btn-success col-sm-2 offset-sm-2">Save</button>
 
 			</div>
-
+            <br>
 			<div>
 
 				<?php

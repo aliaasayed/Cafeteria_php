@@ -1,5 +1,12 @@
 <?php include('user_class.php');
-include('navbar_admin.php')?>
+include('navbar_admin.php');
+session_start();
+
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
+?>
 
 <!DOCTYPE html>
 <html>

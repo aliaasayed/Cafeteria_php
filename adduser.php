@@ -1,4 +1,11 @@
-<?php include('navbar_admin.php');?>
+<?php include('navbar_admin.php');
+session_start();
+
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,37 +31,62 @@
 
 <body>
 <div class="container">
-  <div class="row">
 <form action="adduserback.php" method="POST" enctype="multipart/form-data">
   <h1> Add User </h1>
+  <hr>
+    <div class="row">
+      <label class="col-sm-2 control-label " >Name</label>
+      <input type="text" placeholder="Username" name="username" class="col-sm-3 control-label " for="formGroupInputLarge" required >
+    </div>
 
-    <label class="col-sm-1 control-label " >Name</label>
-    <input type="text" placeholder="Username" name="username" class="col-sm-3 control-label offset-sm-2" for="formGroupInputLarge" required ><br><br>
+    <br>
 
-  <label class="col-sm-1 control-label" >Email</label>
-  <input type="Email" placeholder="email" name="email" class="col-sm-3 control-label offset-sm-2" for="formGroupInputLarge" required><br><br>
+    <div class="row">
+      <label class="col-sm-2 control-label" >Email</label>
+      <input type="Email" placeholder="email" name="email" class="col-sm-3 control-label" for="formGroupInputLarge" required>
+    </div>
 
-  <label class="col-sm-1 control-label" >Password</label>
-  <input type="password" placeholder="password" name="password" class="col-sm-3 control-label offset-sm-2" for="formGroupInputLarge" required><br><br>
+    <br>
 
-  <label class="col-sm-1 control-label" >Confirm Password</label>
-  <input type="password" placeholder=" Confirm password" name="confpassword" class="col-sm-5 control-label offset-sm-2" for="formGroupInputLarge" required><br><br>
+   <div class="row">
+      <label class="col-sm-2 control-label" >Password</label>
+      <input type="password" placeholder="password" name="password" class="col-sm-3 control-label" for="formGroupInputLarge" required>
 
-  <label class="col-sm-1 control-label" >Room no</label>
-  <input type="number" placeholder="Room no" name="Room_no" class="col-sm-4 control-label offset-sm-2" for="formGroupInputLarge" required ><br><br>
+    </div>
 
+    <br>
 
-  <label class="col-sm-1 control-label" >Ext.</label>
-  <input type="number" placeholder="Ext." name="Ext" class="col-sm-2 control-label offset-sm-2" for="formGroupInputLarge" required ><br><br>
+    <div class="row">
+      <label class="col-sm-2 control-label" >Confirm Password</label>
+      <input type="password" placeholder=" Confirm password" name="confpassword" class="col-sm-3 control-label" for="formGroupInputLarge" required>
 
-  <label class="col-sm-1 control-label " >Profile Picture</label>
-  <input type="file" name="fileToUpload" id="fileToUpload" class="offset-sm-1" ><br><br>
+    </div>
 
-    <!--  --><div class="form-group row">
+    <br>
+
+    <div class="row">
+      <label class="col-sm-2 control-label" >Room no</label>
+      <input type="number" placeholder="   Room no" name="Room_no" class="col-sm-2 control-label" for="formGroupInputLarge" required ><br><br>
+    </div>
+
+     <br>
+
+    <div class="row">
+      <label class="col-sm-2 control-label" >Ext.</label>
+      <input type="number" placeholder="   Ext." name="Ext" class="col-sm-2 control-label" for="formGroupInputLarge" required >
+    </div>
+
+     <br>
+   <div class="row">
+    <label class="col-sm-2 control-label " >Profile Picture</label>
+    <input type="file" name="fileToUpload" id="fileToUpload" class="offset-sm-1" ><br><br>
+  </div>
+
+    <br>
+    <div class="form-group row">
    <!-- <div class="col-sm-10 offset-sm-2"> -->
-
-      <button  type="reset" class="btn btn-primary col-sm-2 offset-sm-1">reset</button>
-      <button type="submit" name="submit" class="btn btn-primary col-sm-2 offset-sm-3">Save</button>
+      <button  type="reset" class="btn btn-success col-sm-2 ">reset</button>
+      <button type="submit" name="submit" class="btn btn-success col-sm-2 ">Save</button>
 
     </div>
 
@@ -69,7 +101,6 @@
               }
         ?>
 
-</div>
 
 </form>
 

@@ -5,7 +5,12 @@
 </head>
 <body>
 <?php
+session_start();
 
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -17,9 +22,7 @@ $status = $_GET["status"];
 $id = $_GET["productid"];
 
 $product->update_status($id,$status);
-
- header("Location: allproducts.php");
-
+echo "<script>window.location.href='allproducts.php'</script>";
 ?>
 
 </body>

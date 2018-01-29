@@ -7,7 +7,7 @@ include('connection.php');
 
 class Order{
 
-  
+
   function __construct(){
 
 
@@ -19,7 +19,7 @@ class Order{
     $query='SELECT * FROM orders';
 
     $result=$conn->prepare($query);
-    
+
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
      $data[]=$row;
 
@@ -28,7 +28,7 @@ class Order{
 
 
   }
-  
+
 
   public function insert_order($user_id,$amount,$order_room,$notes)
   {
@@ -42,7 +42,7 @@ class Order{
     $result->execute();
 
 
-  } 
+  }
 
   public function get_latest_order_id($user_id)
   {
@@ -69,7 +69,7 @@ class Order{
      return $max;
 
   }
-}  
+}
 
 
 ?>

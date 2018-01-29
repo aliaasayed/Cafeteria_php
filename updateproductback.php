@@ -7,6 +7,13 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+session_start();
+
+if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
+{
+		echo "<script>window.location.href='index.php'</script>";
+}
 include 'connection.php';
 include 'product_class.php';
 
@@ -92,7 +99,7 @@ function check($data)
           $produ = new product();
          $produ->update($id_update,$Productname,$Price,$Category,$Image);
          /* $produ->insertData($Productname,$Price,$Category,$Image);*/
-          header("Location: allproducts.php");
+				 echo "<script>window.location.href='allproducts.php'</script>";
 
 
 
