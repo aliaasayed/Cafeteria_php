@@ -34,7 +34,7 @@ class Product {
      return $data;
        }
         //update specific product details by product id
-       public function update($product_ID,$product_name,$price,$category,$image,$status){
+       public function update($product_ID,$product_name,$price,$category,$image,$status='avaliable'){
          global  $conn;
           $query = "UPDATE product
            SET product_name ='$product_name' ,price ='$price',category='$category',image='$image' , status='$status'
