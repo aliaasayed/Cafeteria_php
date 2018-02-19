@@ -12,6 +12,16 @@ class Product {
 
   }
 
+  public function getAvailableProducts(){
+      global  $conn;
+    $query='SELECT * FROM product WHERE status="available"';
+    $stmt = $conn->query($query) or die("failed!");
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    $data[]=$row;
+
+     }
+    return $data;
+    }
 //select all data from table product
      public function showData(){
        global  $conn;

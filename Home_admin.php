@@ -96,15 +96,15 @@ include('navbar_admin.php');?>
         $p = new Product();
 		?>
 
-		 DATA="<?php foreach($p->showData() as $value){
-		 extract($value);
+		DATA="<?php foreach($p->getAvailableProducts() as $value){
+		extract($value);
 
-         echo $product_ID.",";
-		 echo $product_name.",";
-		 echo  $price.",";
-		 echo  $image;
-         echo '\n';
-        }
+				echo $product_ID.",";
+		echo $product_name.",";
+		echo  $price.",";
+		echo  $image;
+				echo '\n';
+			 }
         ?>"
 
         </script>

@@ -12,6 +12,15 @@ class Order{
 
 
   }
+  public function delete_order($id)
+{
+  global $conn;
+  $query="DELETE FROM orders WHERE order_id='$id'";
+
+  $result=$conn->prepare($query);
+  $result->execute();
+
+}
 
   public function get_all_orders()
   {

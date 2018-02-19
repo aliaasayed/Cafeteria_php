@@ -71,6 +71,7 @@ include('navbar_admin.php');
             <th> Name</th>
             <th>Room </th>
             <th>EXT . </th>
+						<th>Status </th>
             <th>ACTION</th>
           </tr>
         </thead>
@@ -80,7 +81,7 @@ foreach($product1->select_order() as $value){
  extract($value);
 
   echo  "<tr><td>".$user_id."</td><td>".$order_date."</td><td>".$user_name."</td>";
-  echo   "<td>".$Room_no."</td><td>".$Ext."</td><td>".$status."</td></tr><tr id='tr'>";
+  echo   "<td>".$Room_no."</td><td>".$Ext."</td><td>".$status."</td><td><a href='update_status.php?id=$order_id' ><button value='Deliver' >Deliver</button></a></td></tr><tr id='tr'>";
   $total_amount='';
   if (is_array($product2->order_product($user_id,$order_id)) || is_object($product2->order_product($user_id,$order_id)))
   {

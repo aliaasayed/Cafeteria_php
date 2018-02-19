@@ -23,13 +23,31 @@ if((!isset($_SESSION['email']))&& (!isset($_SESSION['password'])))
 {
 		echo "<script>window.location.href='index.php'</script>";
 }
-$email=$_SESSION['email'];
-$password=md5($_SESSION['password']);
 
-include('navbar_user.php');?>
+$email=$_SESSION['email'];
+$password=$_SESSION['password'];
+include('navbar_user.php');
+?>
 </header>
 <div class="container">
+
 	<div class="row">
+       <?php
+            if(@$_SESSION['order']=='success')
+            {
+                echo ("<div class='" . "alert alert-success'".">
+                <strong> Order is sent Successfully!</strong>
+              </div>");
+
+            }
+            else if(@$_SESSION['order']=='fail')
+            {
+                echo ("<div class='"."alert alert-warning'".">
+                <strong> Order isn't sent! some products aren't available.</strong>
+              </div>");
+            }
+            $_SESSION['order']='';
+       ?>
 		<label class="text-primary" id="user_name"> <?php
         include('user_class.php');
         $user=new user();
@@ -39,6 +57,7 @@ include('navbar_user.php');?>
 		<img id ="user_photo" src="<?php $src=$user->get_Userimage($email);
     echo $src;
     ?>" class="img-rounded" >
+
 	</div>
 
 	<div class="row">
@@ -87,13 +106,14 @@ include('navbar_user.php');?>
         $p = new Product();
 		    ?>
 
-		 DATA="<?php foreach($p->showData() as $value){
-		 extract($value);
-         echo $product_ID.",";
-		 echo $product_name.",";
-		 echo  $price.",";
-		 echo  $image;
-         echo '\n';
+		 DATA="<?php foreach($p->getAvailableProducts() as $value){
+		   extract($value);
+
+       echo  $product_ID.",";
+  		 echo  $product_name.",";
+  		 echo  $price.",";
+  		 echo  $image;
+       echo  '\n';
         }
         ?>"
 

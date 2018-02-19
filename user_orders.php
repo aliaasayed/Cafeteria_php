@@ -56,6 +56,24 @@ include('navbar_user.php');?>
       </tr>
 
     <?php
+	// 	//while ($row_order = $statement->fetch(PDO::FETCH_ASSOC)) {
+	@$query1 = "SELECT status FROM orders where order_id='".$_GET['o_id']."'";
+	$statement1 = $conn->prepare($query1);
+	$statement1->execute();
+	while ($row_order = $statement1->fetch(PDO::FETCH_ASSOC)) {
+		@$query2 = "DELETE FROM orders where order_id='".$_GET['o_id']."'";
+		$statement2 = $conn->prepare($query2);
+		if($row_order['status']!='processing')
+		{
+			//echo "<script>window.location.href=window.location.href</script>";
+		}
+		else if($row_order['status']=='processing')
+		{
+			@$statement2->execute();
+		}
+	}
+
+	//echo "<script>window.location.href=x</script>";
     @$query = "SELECT order_id,date,time,amount,status FROM orders where user_id='$user_ID'
     and date between '".$_GET['date_from']."' and '".$_GET['date_to']."'";
     $statement = $conn->prepare($query);
@@ -75,7 +93,7 @@ include('navbar_user.php');?>
       echo "<td>";
       if($row_order['status']=='processing')
       {
-        echo "<a>cancel</a>";
+        echo "<a href='#' class='cancel'>cancel</a>";
       }
       else {
         echo "";
@@ -83,6 +101,19 @@ include('navbar_user.php');?>
       echo "</td>";
       echo "</tr>";
     }
+		// @$query2 = "DELETE FROM orders where order_id='".$_GET['o_id']."'";
+		// $statement2 = $conn->prepare($query2);
+		// // if($row_order['status']!='processing')
+		// // {
+    // //
+		// // }
+		// // else if($row_order['status']=='processing')
+		// // {
+		// 	@$statement2->execute();
+		// 	//echo"<script>location.reload();</script>"
+    // //header("refresh: 0;");
+		// //}
+		// //echo "<script>window.location.href=x</script>";
 
     ?>
 
